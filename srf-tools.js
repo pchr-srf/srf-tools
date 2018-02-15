@@ -1,18 +1,26 @@
 document.addEventListener('DOMContentLoaded', () => {
-    let contentIdInput = document.getElementById('contentIdInput');
-    let urls = document.querySelectorAll(".links a");
-
     let fillInContentId = (data) => {
-        contentIdInput.value = data.id;
+        // Put location in input
+        document.getElementById('contentIdInput').value = data.locationId;
 
-        urls.forEach((element, index) => {
+        // create URLs for article variations
+        document.querySelectorAll(".link--replace-url").forEach((element, index) => {
             let href = element.dataset.href;
-            element.href = href.replace("$ID", data.id).replace("$URL", data.url);
+            element.href = href.replace("$ID", data.locationId).replace("$URL", data.origin);
         });
+
+        document.querySelector(".link--old-url").href = data.url + "?wayback=1";
+
     };
 
     chrome.tabs.executeScript({
-        code: 'var data = {id: document.querySelector("[data-content-id]").dataset.contentId, url: window.location.origin}; data'
+        code: `
+        var data = {
+            locationId: document.querySelector("[data-content-id]").dataset.contentId,
+            origin: window.location.origin,
+            url: window.location.href
+        };
+        data`
     }, (results) => {
         if (results.length > 0 && results[0]) {
             let returnObject = results[0];
