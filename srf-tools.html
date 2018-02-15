@@ -1,0 +1,38 @@
+<html>
+<head>
+    <title>SRF-Tools</title>
+    <style type="text/css">
+        body {
+            margin: 10px;
+            white-space: nowrap;
+        }
+
+        h1 {
+            font-size: 15px;
+        }
+
+        #container {
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+    <script src="srf-tools.js"></script>
+</head>
+
+<body>
+    <h1>CMS Links</h1>
+    <div id="container">
+
+        <div id="section--article">
+            <h2>Artikel</h2>
+            <p>Content-ID:</p><input id="contentIdInput" value="">
+
+            <ul class="links">
+                <li><a target="_blank" data-href="$URL/article/$ID" href="">Responsive Article</a></li>
+                <li><a target="_blank" data-href="$URL/webview/article/$ID" href="">Webview</a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
