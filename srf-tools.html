@@ -16,14 +16,16 @@
             display: flex;
             justify-content: space-between;
         }
+
+        #notOnAValidUrl {
+            display: none;
+        }
     </style>
     <script src="srf-tools.js"></script>
 </head>
 
 <body>
-    <h1>CMS Links</h1>
     <div id="container">
-
         <div id="section--article">
             <h2>Artikel</h2>
             <p>Content-ID:</p><input id="contentIdInput" value="">
@@ -33,6 +35,9 @@
                 <li><a target="_blank" data-href="$URL/webview/article/$ID" href="">Webview</a></li>
             </ul>
         </div>
+    </div>
+    <div id="notOnAValidUrl">
+        <p>Das isch kei SRF-Siite, gopf!</p>
     </div>
 </body>
 </html>

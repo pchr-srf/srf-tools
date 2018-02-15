@@ -17,6 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (results.length > 0 && results[0]) {
             let returnObject = results[0];
             fillInContentId(returnObject);
+        } else {
+            document.querySelector("#container").style.display = "none";
+            document.querySelector("#notOnAValidUrl").style.display = "block";
         }
     });
 });
