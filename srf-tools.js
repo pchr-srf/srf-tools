@@ -26,8 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
             let returnObject = results[0];
             fillInContentId(returnObject);
         } else {
-            document.querySelector("#container").style.display = "none";
-            document.querySelector("#notOnAValidUrl").style.display = "block";
+            // Article links can only be generated on a srf page
+            document.querySelector("#section--article").style.display = "none";
         }
     });
 });
