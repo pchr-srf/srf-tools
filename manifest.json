@@ -4,7 +4,12 @@
   "version": "1.0",
   "manifest_version": 3,
   "action": {
-    "default_icon": "icon.png",
+    "default_icon": {
+      "32": "/assets/tool_box32.png",
+      "48": "/assets/tool_box48.png",
+      "64": "/assets/tool_box64.png",
+      "128": "/assets/tool_box128.png"
+    },
     "default_popup": "srf-tools.html"
   },
   "content_scripts": [
@@ -22,5 +27,11 @@
     "activeTab",
     "storage",
     "scripting"
-  ]
+  ],
+  "icons": {
+    "32": "/assets/tool_box32.png",
+    "48": "/assets/tool_box48.png",
+    "64": "/assets/tool_box64.png",
+    "128": "/assets/tool_box128.png"
+  }
 }
