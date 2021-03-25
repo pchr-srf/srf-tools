@@ -1,49 +1,92 @@
 <html>
 <head>
     <title>SRF-Tools</title>
-    <link href="/styles/popup.css" rel="stylesheet">
+    <link href="/styles/popup.css" rel="stylesheet" />
 </head>
 
 <body>
-    <div id="container">
+    <div class="container">
+        <div class="container__row">
+            <!-- Info about the current content -->
+            <div class="section">
+                <h2 class="section__title">Content Info</h2>
 
-        <input type="checkbox" id="showEnvironment" name="showEnvironment">
-        <label for="showEnvironment">Show environment with a banner</label>
+                <div class="section__content">
+                    <div class="section__row">
+                        <input type="checkbox" id="showEnvironment" name="showEnvironment">
+                        <label for="showEnvironment">Show environment banner</label>
+                    </div>
 
-        <!--
-        <div id="section--article">
-            <h2>Artikel</h2>
-            <p>Content-ID:</p><input id="contentIdInput" value="">
+                    <div class="section__row">
+                        <label for="contentIdInput">ID:</label>
+                        <input id="contentIdInput" value="">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Links/Actions regarding articles -->
+            <div class="js-article-actions section section--hidden">
+                <h2 class="section__title">Article</h2>
+                
+                <div class="section__content"></div>
+                    <ul class="links">
+                        <li><a class="link--replace-url" target="_blank" data-href="$URL/article/$ID" href="">Responsive Article</a></li>
+                        <li><a class="link--replace-url" target="_blank" data-href="$URL/webview/article/$ID" href="">Webview</a></li>
+                        <li><a class="link--replace-url" target="_blank" data-href="$URL/newsapp-api/article/5.0/$ID" href="">NewsApp</a></li>
+                        <li><a class="link--replace-url" target="_blank" data-href="$URL/newsapp-api/article/sport/$ID" href="">SportApp</a></li>
+                        <li><a class="link--replace-url" target="_blank" data-href="$URL/amp/article/$ID" href="">Google AMP</a></li>
+                        <li><a class="link--old-url" target="_blank" href="">Alte Ansicht</a></li>
+                    </ul>
+                </div>
+            </div>
 
-            <ul class="links">
-                <li><a class="link--replace-url" target="_blank" data-href="$URL/article/$ID" href="">Responsive Article</a></li>
-                <li><a class="link--replace-url" target="_blank" data-href="$URL/webview/article/$ID" href="">Webview</a></li>
-                <li><a class="link--replace-url" target="_blank" data-href="$URL/newsapp-api/article/5.0/$ID" href="">NewsApp</a></li>
-                <li><a class="link--replace-url" target="_blank" data-href="$URL/newsapp-api/article/sport/$ID" href="">SportApp</a></li>
-                <li><a class="link--replace-url" target="_blank" data-href="$URL/amp/article/$ID" href="">Google AMP</a></li>
-                <li><a class="link--old-url" target="_blank" href="">Alte Ansicht</a></li>
-            </ul>
+            <!-- Links/Actions regarding landingpages -->
+            <div class="js-page-actions section section--hidden">
+                <h2 class="section__title">Landing Page</h2>
+
+                <div class="section__content"></div>
+                    <ul class="links">
+                        <li><a class="link--replace-url" target="_blank" data-href="$URL/landingpage/$ID" href="">Zugriff mit ID</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
-        <div id="section--cms">
-            <h2>CMS</h2>
-            <ul>
-                <li><a target="_blank" href="https://www-test.srf.ch">Test Frontend</a></li>
-                <li><a target="_blank" href="http://redaktor.zrh.test.srf.mpc/portal_uebersicht/login">Test Backend</a></li>
-                <li><a target="_blank" href="http://admin.cms.zrh.test.srf.mpc/content/dashboard">Test Admin</a></li>
+        <div class="container__row">
+            <!-- Link collection -->
+            <div class="js-cms-actions section">
+                <h2 class="section__title">CMS</h2>
 
-                <li><a target="_blank" href="https://www-stage.srf.ch">Stage Frontend</a></li>
-                <li><a target="_blank" href="http://redaktor.zrh.stage.srf.mpc/portal_uebersicht/login">Stage Backend</a></li>
-                <li><a target="_blank" href="http://admin.cms.zrh.stage.srf.mpc/content/dashboard">Stage Admin</a></li>
+                <div class="section__content"></div>
+                    <ul>
+                        <li>Test</li>
+                        <li><a target="_blank" href="https://www-test.srf.ch">Test Frontend</a></li>
+                        <li><a target="_blank" href="http://redaktor.zrh.test.srf.mpc/portal_uebersicht/">Test Backend</a></li>
+                        <li><a target="_blank" href="http://admin.cms.zrh.test.srf.mpc/content/dashboard">Test Admin</a></li>
 
-                <li><a target="_blank" href="https://www.srf.ch">Prod Frontend</a></li>
-                <li><a target="_blank" href="http://redaktor.zrh.production.srf.mpc/portal_uebersicht/login">Prod Backend</a></li>
-                <li><a target="_blank" href="http://admin.cms.zrh.production.srf.mpc/content/dashboard">Prod Admin</a></li>
+                        <li>Stage</li>
+                        <li><a target="_blank" href="https://www-stage.srf.ch">Stage Frontend</a></li>
+                        <li><a target="_blank" href="http://redaktor.zrh.stage.srf.mpc/portal_uebersicht/">Stage Backend</a></li>
+                        <li><a target="_blank" href="http://admin.cms.zrh.stage.srf.mpc/content/dashboard">Stage Admin</a></li>
 
-                <li><a target="_blank" href="https://cms-ci-1.zrh.test.srf.mpc">Jenkins</a></li>
-            </ul>
+                        <li>Prod</li>
+                        <li><a target="_blank" href="https://www.srf.ch">Prod Frontend</a></li>
+                        <li><a target="_blank" href="http://redaktor.zrh.production.srf.mpc/portal_uebersicht/">Prod Backend</a></li>
+                        <li><a target="_blank" href="http://admin.cms.zrh.production.srf.mpc/content/dashboard">Prod Admin</a></li>
+
+                        <li>Dev</li>
+                        <li><a target="_blank" href="https://www.dev.srf.ch/">Dev Frontend</a></li>
+                        <li><a target="_blank" href="https://redaktor.dev.srf.ch/portal_uebersicht/">Dev Backend</a></li>
+                        <li><a target="_blank" href="https://admin.dev.srf.mpc/content/view/full/2">Dev Admin</a></li>
+
+                        <li>Others</li>
+                        <li><a target="_blank" href="https://cms-ci-1.zrh.test.srf.mpc">Jenkins</a></li>
+                        <li><a target="_blank" href="https://kibana.zrh.production.srf.mpc/app/kibana#/dashboard/[CMS]-Messages-Dashboard">Kibana (Prod)</a></li>
+                        <li><a target="_blank" href="https://monitor.production.admin.srf.ch/cgi-bin/icinga/status.cgi?style=detail&hostgroup=team-1&allunhandledproblems">Icinga Team 1</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        -->
     </div>
 
     <script src="srf-tools.js"></script>
