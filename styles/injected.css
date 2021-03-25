@@ -1,0 +1,14 @@
+.srf-tools__banner {
+    position: fixed;
+    top: 9px;
+    right: -58px;
+    z-index: 100000;
+    transform: rotate( 45deg);
+    color: white;
+    padding: 4px 69px;
+    background-color: red;
+    transform-origin: center;
+    pointer-events: none;
+    opacity: .7;
+    font-size: 12px;
+}

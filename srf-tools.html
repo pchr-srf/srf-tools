@@ -1,31 +1,16 @@
 <html>
 <head>
     <title>SRF-Tools</title>
-    <style type="text/css">
-        body {
-            margin: 10px;
-            white-space: nowrap;
-        }
-
-        h1 {
-            font-size: 15px;
-        }
-
-        #container {
-            align-items: center;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        #notOnAValidUrl {
-            display: none;
-        }
-    </style>
-    <script src="srf-tools.js"></script>
+    <link href="/styles/popup.css" rel="stylesheet">
 </head>
 
 <body>
     <div id="container">
+
+        <input type="checkbox" id="showEnvironment" name="showEnvironment">
+        <label for="showEnvironment">Show environment with a banner</label>
+
+        <!--
         <div id="section--article">
             <h2>Artikel</h2>
             <p>Content-ID:</p><input id="contentIdInput" value="">
@@ -58,6 +43,9 @@
                 <li><a target="_blank" href="https://cms-ci-1.zrh.test.srf.mpc">Jenkins</a></li>
             </ul>
         </div>
+        -->
     </div>
+
+    <script src="srf-tools.js"></script>
 </body>
 </html>
