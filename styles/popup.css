@@ -1,6 +1,21 @@
+:root {
+    --container-bg: #fff;
+    --section-bg: #ddd;
+    --text-color: #222;
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --container-bg: #222;
+        --section-bg: #333;
+        --text-color: #fff;
+    }
+}
+
 body {
     margin: 0;
     white-space: nowrap;
+    background: var(--container-bg);
+    color: var(--text-color);
 }
 
 .container {
@@ -18,7 +33,7 @@ body {
     display: flex;
     flex-direction: column;
     padding: 8px;
-    background-color: #ddd;
+    background-color: var(--section-bg);
     margin: 4px;
     flex: 1 1 auto;
 }
@@ -32,6 +47,10 @@ body {
     display: flex;
     flex-direction: column;
     flex: 1 1 auto;
+}
+
+.section__content--horizontal {
+    flex-direction: row;
 }
 
 .section__row {
