@@ -120,11 +120,20 @@ const getContentInfo = () => {
   });
 };
 
+const showOrHideDevStuff = () => {
+  chrome.storage.sync.get("showDeveloperStuff", ({ showDeveloperStuff }) => {
+    document
+      .querySelectorAll(".js-dev-only")
+      .forEach(node => node.style.display = showDeveloperStuff ? '' : 'none');
+  });
+};
+
 // what to do when the extension is "opened"
 const onLoad = () => {
   getContentInfo();
   setBannerStateFromStorage();
   setupBannerCheckboxListener();
+  showOrHideDevStuff();
 };
 
 onLoad();
