@@ -27,9 +27,7 @@
   ],
   "permissions": [
     "tabs",
-    "activeTab",
-    "storage",
-    "scripting"
+    "storage"
   ],
   "host_permissions": [
     "*://*.srf.ch/*"
