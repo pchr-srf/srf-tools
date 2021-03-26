@@ -42,6 +42,7 @@ a {
     background-color: var(--section-bg);
     margin: 4px;
     flex: 1 1 auto;
+    border-radius: 2px;
 }
 
 .section__title {
