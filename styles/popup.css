@@ -2,12 +2,14 @@
     --container-bg: #fff;
     --section-bg: #ddd;
     --text-color: #222;
+    --link-color: #222;
 }
 @media (prefers-color-scheme: dark) {
     :root {
         --container-bg: #222;
         --section-bg: #333;
         --text-color: #fff;
+        --link-color: #fff;
     }
 }
 
@@ -16,6 +18,10 @@ body {
     white-space: nowrap;
     background: var(--container-bg);
     color: var(--text-color);
+}
+
+a {
+    color: var(--link-color);
 }
 
 .container {
