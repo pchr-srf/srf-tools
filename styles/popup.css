@@ -67,7 +67,3 @@ body {
 .section__row > *:first-child {
     margin-right: 8px;
 }
-
-.section--hidden {
-    display: none;
-}

@@ -36,12 +36,19 @@ const onContentIdFound = contentId => {
   //document.querySelector(".link--old-url").href = data.url + "?wayback=1";
 };
 
+// no content id found - show an error message and hide the input field
+const onContentIdNotFound = () => {
+  document.querySelector(".js-no-contentid-found").style.display = '';
+  document.querySelector(".js-contentid-container").style.display = 'none';
+};
+
+
 // depending on the content class, different areas in the popup should be hidden/shown
 const onContentClassFound = contentClass => {
   if (contentClass === 'srf_landingpage') {
-    document.querySelector(".js-page-actions").classList.remove('section--hidden');
+    document.querySelector(".js-page-actions").style.display = '';
   } else if (contentClass === 'srf_article') {
-    document.querySelector(".js-article-actions").classList.remove('section--hidden');
+    document.querySelector(".js-article-actions").style.display = '';
   }
 }
 
@@ -52,7 +59,7 @@ const getContentInfo = () => {
       if (contentId) {
         onContentIdFound(contentId);
       } else {
-        // todo: no contentId found :(
+        onContentIdNotFound();
       }
 
       if (contentClass) {

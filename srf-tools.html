@@ -17,15 +17,19 @@
                         <label for="showEnvironment">Show environment banner</label>
                     </div>
 
-                    <div class="section__row">
+                    <div class="section__row js-contentid-container">
                         <label for="contentIdInput">ID:</label>
                         <input id="contentIdInput" value="">
+                    </div>
+
+                    <div class="section__row js-no-contentid-found" style="display: none;">
+                        <p>Couldn't find the content ID :(</p>
                     </div>
                 </div>
             </div>
             
             <!-- Links/Actions regarding articles -->
-            <div class="js-article-actions section section--hidden">
+            <div class="js-article-actions section" style="display: none;">
                 <h2 class="section__title">Article</h2>
                 
                 <div class="section__content">
@@ -34,12 +38,13 @@
                         <li><a class="link--replace-url" target="_blank" data-href="$URL/article/$ID" href="">Access via ID</a></li>
                         <li><a class="link--replace-url" target="_blank" data-href="$URL/webview/article/$ID" href="">Webview</a></li>
                         <li><a class="link--replace-url" target="_blank" data-href="$URL/article/$ID" href="">JSON</a></li>
+                        <li><a class="link--replace-url" target="_blank" data-href="$URL/redirect/objecttomainnode/$ID" href="">Open in ezAdmin</a></li>
                     </ul>
                 </div>
             </div>
 
             <!-- Links/Actions regarding landingpages -->
-            <div class="js-page-actions section section--hidden">
+            <div class="js-page-actions section" style="display: none;">
                 <h2 class="section__title">Landing Page</h2>
 
                 <div class="section__content"></div>
@@ -49,6 +54,7 @@
                         <li><a class="link--replace-url" target="_blank" data-href="$URL/landingpage/$ID" href="">JSON View</a></li>
                         <li><a class="link--replace-url" target="_blank" data-href="$URL/landingpage/$ID" href="">Webview</a></li>
                         <li><a class="link--replace-url" target="_blank" data-href="$URL/landingpage/$ID" href="">RSS Feed</a></li>
+                        <li><a class="link--replace-url" target="_blank" data-href="$URL/redirect/objecttomainnode/$ID" href="">Open in ezAdmin</a></li>
                     </ul>
                 </div>
             </div>
