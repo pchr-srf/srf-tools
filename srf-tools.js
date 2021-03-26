@@ -24,16 +24,52 @@ const setupBannerCheckboxListener = () => {
   });
 }
 
-const onContentIdFound = contentId => {
+const onContentIdFound = (contentId, phase) => {
   document.getElementById('contentIdInput').value = contentId;
   
-  // create URLs for article variations
-  //document.querySelectorAll(".link--replace-url").forEach((element, index) => {
-  //  let href = element.dataset.href;
-  //  element.href = href.replace("$ID", contentId).replace("$URL", data.origin);
-  //});
+  // idea: loop over all links, replace various placeholders with the correct data:
+  // $FE_URL    = https://www.srf.ch (depending on phase)
+  // $BE_URL    = https://redaktor.zrh.production.srf.mpc (depending on phase)
+  // $ADMIN_URL = https://admin.cms.zrh.production.srf.mpc (depending on phase)
+  // $ID        = contentId
 
-  //document.querySelector(".link--old-url").href = data.url + "?wayback=1";
+  let frontendUrl, backendUrl, adminUrl;
+
+  switch (phase) {
+    case 'DEV':
+      frontendUrl = 'https://www.dev.srf.ch';
+      backendUrl  = 'https://redaktor.dev.srf.ch';
+      adminUrl    = 'https://admin.dev.srf.mpc';
+      break;
+    case 'TEST':
+      frontendUrl = 'https://www-test.srf.ch';
+      backendUrl  = 'https://redaktor.zrh.test.srf.mpc';
+      adminUrl    = 'https://admin.cms.zrh.test.srf.mpc/';
+      break;
+    case 'STAGE':
+      frontendUrl = 'https://www-stage.srf.ch';
+      backendUrl  = 'https://redaktor.zrh.stage.srf.mpc';
+      adminUrl    = 'https://admin.cms.zrh.stage.srf.mpc';
+      break;
+    case 'PROD':
+    default:
+      frontendUrl = 'https://www.srf.ch';
+      backendUrl  = 'https://redaktor.zrh.production.srf.mpc';
+      adminUrl    = 'https://admin.cms.zrh.production.srf.mpc';
+      break;
+  }
+
+  // the links have a data attribute with the href-string that includes the placeholders
+  document.querySelectorAll(".link--replace-url").forEach((element, index) => {
+    let href = element.dataset.href;
+    // replace all placeholders
+    href = href
+      .replace("$ID", contentId)
+      .replace("$FE_URL", frontendUrl)
+      .replace("$BE_URL", backendUrl)
+      .replace("$ADMIN_URL", adminUrl);
+    element.href = href;
+  });
 };
 
 // no content id found - show an error message and hide the input field
@@ -55,17 +91,17 @@ const onContentClassFound = contentClass => {
 // get some info about the website via content script (content id and content class)
 const getContentInfo = () => {
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-    chrome.tabs.sendMessage(tabs[0].id, {action: "getContentInfo"}, ({contentId, contentClass}) => {
+    chrome.tabs.sendMessage(tabs[0].id, {action: "getContentInfo"}, ({
+      contentId, contentClass, phase
+    }) => {
       if (contentId) {
-        onContentIdFound(contentId);
+        onContentIdFound(contentId, phase);
       } else {
         onContentIdNotFound();
       }
 
       if (contentClass) {
         onContentClassFound(contentClass);
-      } else {
-        // todo: no contentClass found :(
       }
     });
   });
@@ -73,9 +109,9 @@ const getContentInfo = () => {
 
 // what to do when the extension is "opened"
 const onLoad = () => {
+  getContentInfo();
   setBannerStateFromStorage();
   setupBannerCheckboxListener();
-  getContentInfo();
 };
 
 onLoad();

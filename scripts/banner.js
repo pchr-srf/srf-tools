@@ -1,4 +1,4 @@
-const getPhase = () => {
+const getPhaseForBanner = () => {
   const url = window.location.href;
   if(url.indexOf('www-test.') >= 0) {
     return 'TEST';
@@ -14,7 +14,7 @@ const getPhase = () => {
 const addBanner = () => {
   const banner = document.createElement("div"); 
   document.body.appendChild(banner); 
-  banner.innerText = getPhase();
+  banner.innerText = getPhaseForBanner();
   banner.className = 'srf-tools__banner';
 };
 

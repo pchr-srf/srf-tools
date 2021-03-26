@@ -34,11 +34,11 @@
                 
                 <div class="section__content">
                     <ul class="links">
-                        <li><a class="link--replace-url" target="_blank" data-href="$URL/article/$ID" href="">Open in Edith</a></li>
-                        <li><a class="link--replace-url" target="_blank" data-href="$URL/article/$ID" href="">Access via ID</a></li>
-                        <li><a class="link--replace-url" target="_blank" data-href="$URL/webview/article/$ID" href="">Webview</a></li>
-                        <li><a class="link--replace-url" target="_blank" data-href="$URL/article/$ID" href="">JSON</a></li>
-                        <li><a class="link--replace-url" target="_blank" data-href="$URL/redirect/objecttomainnode/$ID" href="">Open in ezAdmin</a></li>
+                        <li><a class="link--replace-url" target="_blank" data-href="$BE_URL/globi/hopp/$ID" href="">Open in Edith/CMS</a></li>
+                        <li><a class="link--replace-url" target="_blank" data-href="$FE_URL/article/$ID" href="">Access via ID</a></li>
+                        <li><a class="link--replace-url" target="_blank" data-href="$FE_URL/article/$ID/webview" href="">Webview</a></li>
+                        <li><a class="link--replace-url" target="_blank" data-href="$FE_URL/article/$ID/json" href="">JSON</a></li>
+                        <li><a class="link--replace-url" target="_blank" data-href="$ADMIN_URL/redirect/objecttomainnode/$ID" href="">Open in ezAdmin</a></li>
                     </ul>
                 </div>
             </div>
@@ -49,12 +49,12 @@
 
                 <div class="section__content"></div>
                     <ul class="links">
-                        <li><a class="link--replace-url" target="_blank" data-href="$URL/landingpage/$ID" href="">Open in Globi</a></li>
-                        <li><a class="link--replace-url" target="_blank" data-href="$URL/landingpage/$ID" href="">Access via ID</a></li>
-                        <li><a class="link--replace-url" target="_blank" data-href="$URL/landingpage/$ID" href="">JSON View</a></li>
-                        <li><a class="link--replace-url" target="_blank" data-href="$URL/landingpage/$ID" href="">Webview</a></li>
-                        <li><a class="link--replace-url" target="_blank" data-href="$URL/landingpage/$ID" href="">RSS Feed</a></li>
-                        <li><a class="link--replace-url" target="_blank" data-href="$URL/redirect/objecttomainnode/$ID" href="">Open in ezAdmin</a></li>
+                        <li><a class="link--replace-url" target="_blank" data-href="$BE_URL/globi/hopp/$ID" href="">Open in Globi/CMS</a></li>
+                        <li><a class="link--replace-url" target="_blank" data-href="$FE_URL/landingpage/$ID" href="">Access via ID</a></li>
+                        <li><a class="link--replace-url" target="_blank" data-href="$FE_URL/landingpage/$ID/json" href="">JSON View</a></li>
+                        <li><a class="link--replace-url" target="_blank" data-href="$FE_URL/landingpage/$ID/webview" href="">Webview</a></li>
+                        <li><a class="link--replace-url" target="_blank" data-href="$FE_URL/bnf/rss/$ID" href="">RSS Feed</a></li>
+                        <li><a class="link--replace-url" target="_blank" data-href="$ADMIN_URL/redirect/objecttomainnode/$ID" href="">Open in ezAdmin</a></li>
                     </ul>
                 </div>
             </div>
@@ -104,12 +104,14 @@
                 </div>
 
                 <div class="section__content">
-                    <ul>
-                        <li>Others</li>
-                        <li><a target="_blank" href="https://cms-ci-1.zrh.test.srf.mpc">Jenkins</a></li>
-                        <li><a target="_blank" href="https://kibana.zrh.production.srf.mpc/app/kibana#/dashboard/[CMS]-Messages-Dashboard">Kibana (Prod)</a></li>
-                        <li><a target="_blank" href="https://monitor.production.admin.srf.ch/cgi-bin/icinga/status.cgi?style=detail&hostgroup=team-1&allunhandledproblems">Icinga Team 1</a></li>
-                    </ul>
+                    <div>
+                        Others
+                        <ul>
+                            <li><a target="_blank" href="https://cms-ci-1.zrh.test.srf.mpc">Jenkins</a></li>
+                            <li><a target="_blank" href="https://kibana.zrh.production.srf.mpc/app/kibana#/dashboard/[CMS]-Messages-Dashboard">Kibana (Prod)</a></li>
+                            <li><a target="_blank" href="https://monitor.production.admin.srf.ch/cgi-bin/icinga/status.cgi?style=detail&hostgroup=team-1&allunhandledproblems">Icinga Team 1</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
