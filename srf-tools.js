@@ -78,6 +78,9 @@ const onContentIdNotFound = () => {
   document.querySelector(".js-contentid-container").style.display = 'none';
 };
 
+const onInfoGatheringFailed = () => {
+  document.querySelector(".js-contentinfo").style.display = 'none';
+}
 
 // depending on the content class, different areas in the popup should be hidden/shown
 const onContentClassFound = contentClass => {
@@ -91,9 +94,19 @@ const onContentClassFound = contentClass => {
 // get some info about the website via content script (content id and content class)
 const getContentInfo = () => {
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-    chrome.tabs.sendMessage(tabs[0].id, {action: "getContentInfo"}, ({
-      contentId, contentClass, phase
-    }) => {
+    if(chrome.runtime.lastError) {
+      console.warn('Not a SRF page, probably?');
+    }
+
+    chrome.tabs.sendMessage(tabs[0].id, {action: "getContentInfo"}, (response) => {
+      if (!response || chrome.runtime.lastError) {
+        // Something went wrong
+        console.warn("Error!", chrome.runtime.lastError);
+        onInfoGatheringFailed();
+        return;
+      }
+
+      const { contentId, contentClass, phase } = response;
       if (contentId) {
         onContentIdFound(contentId, phase);
       } else {
@@ -105,7 +118,7 @@ const getContentInfo = () => {
       }
     });
   });
-}
+};
 
 // what to do when the extension is "opened"
 const onLoad = () => {
