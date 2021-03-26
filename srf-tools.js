@@ -95,13 +95,13 @@ const onContentClassFound = contentClass => {
 const getContentInfo = () => {
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
     if(chrome.runtime.lastError) {
-      console.warn('Not a SRF page, probably?');
+      console.log('Not a SRF page, probably?');
     }
 
     chrome.tabs.sendMessage(tabs[0].id, {action: "getContentInfo"}, (response) => {
       if (!response || chrome.runtime.lastError) {
         // Something went wrong
-        console.warn("Error!", chrome.runtime.lastError);
+        console.log("Error!", chrome.runtime.lastError);
         onInfoGatheringFailed();
         return;
       }
