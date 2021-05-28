@@ -1,14 +1,59 @@
 .srf-tools__banner {
-    position: fixed;
-    top: 9px;
-    right: -58px;
-    z-index: 100000;
-    transform: rotate( 45deg);
-    color: white;
-    padding: 4px 69px;
-    background-color: red;
-    transform-origin: center;
-    pointer-events: none;
-    opacity: .7;
-    font-size: 12px;
+  position: fixed;
+  top: 9px;
+  right: -58px;
+  z-index: 100000;
+  transform: rotate( 45deg);
+  color: white;
+  padding: 4px 69px;
+  background-color: red;
+  transform-origin: center;
+  pointer-events: none;
+  opacity: .7;
+  font-size: 12px;
+}
+
+.srf-tools__daily {
+  display: flex;
+  position: fixed;
+  top: 2px;
+  right: 2px;
+  padding: 8px;
+  z-index: 100001;
+  background: rgb(218 218 216 / 96%);
+  border-radius: 2px;
+}
+
+.srf-tools__daily label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 8px;
+  position: relative;
+  font-family: sans-serif;
+  cursor: pointer;
+}
+
+.srf-tools__daily img {
+  margin-bottom: 4px;
+  width: 42px;
+}
+
+.srf-tools__daily input {
+  display: none;
+}
+
+.srf-tools__daily input:checked + label:after {
+  content: '✅';
+  position: absolute;
+  top: -8px;
+  right: -8px;
+}
+
+.srf-tools__daily input:checked + label {
+  color: #b1b1b1;
+}
+
+.srf-tools__daily input:checked + label img {
+  filter: grayscale(1);
 }

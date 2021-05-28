@@ -1,4 +1,5 @@
 const showEnvironmentCheckbox = document.getElementById("showEnvironment");
+const showDailyCheckbox = document.getElementById("showDailyThing");
 
 // load user setting regarding environment from storage, set checkbox' state
 const setBannerStateFromStorage = () => {
@@ -19,6 +20,30 @@ const setupBannerCheckboxListener = () => {
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
       chrome.tabs.sendMessage(tabs[0].id, {
         action: 'showEnvironmentBadge'
+      });
+    });
+  });
+}
+
+// load user setting regarding daily from storage, set checkbox' state
+const setDailyStateFromStorage = () => {
+  chrome.storage.sync.get("showDailyThing", ({ showDailyThing }) => {
+    showDailyCheckbox.checked = !!showDailyThing;
+  });
+}
+
+// When the checkbox is changed, save the setting and let the content script know
+const setupDailyCheckboxListener = () => {
+  showDailyCheckbox.addEventListener("click", async () => {
+    const showDailyThing = showDailyCheckbox.checked;
+
+    // save the setting
+    chrome.storage.sync.set({ showDailyThing: showDailyThing });
+
+    // send a message to the current tab
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+      chrome.tabs.sendMessage(tabs[0].id, {
+        action: 'showDailyThing'
       });
     });
   });
@@ -131,8 +156,13 @@ const showOrHideDevStuff = () => {
 // what to do when the extension is "opened"
 const onLoad = () => {
   getContentInfo();
+
   setBannerStateFromStorage();
   setupBannerCheckboxListener();
+
+  setDailyStateFromStorage();
+  setupDailyCheckboxListener();
+
   showOrHideDevStuff();
 };
 

@@ -1,7 +1,7 @@
 {
   "name": "SRF Tools",
   "description": "Little helper for SRF developers and CMS users",
-  "version": "1.0",
+  "version": "1.1",
   "manifest_version": 3,
   "action": {
     "default_icon": {
@@ -15,11 +15,13 @@
   "content_scripts": [
     {
       "matches": [
-        "*://*.srf.ch/*"
+        "*://*.srf.ch/*",
+        "*://jira.srg.beecollaboration.com/*"
       ],
       "js" : [
         "scripts/banner.js",
-        "scripts/links.js"
+        "scripts/links.js",
+        "scripts/daily.js"
       ],
       "css" : ["styles/injected.css"],
       "run_at": "document_end"
