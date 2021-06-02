@@ -46,12 +46,14 @@
 .srf-tools__daily input:checked + label:after {
   content: '✅';
   position: absolute;
-  top: -8px;
-  right: -8px;
+  top: -6px;
+  left: calc(50% + 8px);
+  z-index: 1;
 }
 
 .srf-tools__daily input:checked + label {
   color: #b1b1b1;
+  order: 1;
 }
 
 .srf-tools__daily input:checked + label img {

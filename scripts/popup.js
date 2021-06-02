@@ -1,5 +1,6 @@
 const showEnvironmentCheckbox = document.getElementById("showEnvironment");
 const showDailyCheckbox = document.getElementById("showDailyThing");
+const teamSelection = document.getElementById("teamSelection");
 
 // load user setting regarding environment from storage, set checkbox' state
 const setBannerStateFromStorage = () => {
@@ -24,6 +25,50 @@ const setupBannerCheckboxListener = () => {
     });
   });
 }
+
+// get the defined team(s) from storage, add <options>, set up listener
+const loadTeams = () => {
+  chrome.storage.sync.get("teamsJSON", ({ teamsJSON }) => {
+    if (!teamsJSON || teamsJSON.length < 1) {
+      teamSelection.remove();
+      return;
+    }
+
+    chrome.storage.sync.get("selectedTeamName", ({ selectedTeamName }) => {
+      if (!selectedTeamName) {
+        selectedTeamName = teamsJSON[0].name;
+      }
+      
+      teamsJSON.forEach(team => {
+        const option = document.createElement("option");
+        option.text = team.name;
+        option.value = team.name;
+  
+        if (team.name === selectedTeamName) {
+          option.selected = true;
+        }
+  
+        teamSelection.add(option);
+      });
+    });
+  });
+
+
+  teamSelection.addEventListener("change", async () => {
+    const selectedTeamName = teamSelection.value;
+    console.log(selectedTeamName);
+
+    chrome.storage.sync.set({ selectedTeamName: selectedTeamName });
+
+    // send a message to the current tab
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+      chrome.tabs.sendMessage(tabs[0].id, {
+        action: 'selectedTeamNameChanged'
+      });
+    });
+  });
+};
+
 
 // load user setting regarding daily from storage, set checkbox' state
 const setDailyStateFromStorage = () => {
@@ -162,6 +207,8 @@ const onLoad = () => {
 
   setDailyStateFromStorage();
   setupDailyCheckboxListener();
+
+  loadTeams();
 
   showOrHideDevStuff();
 };
