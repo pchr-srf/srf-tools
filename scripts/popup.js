@@ -154,9 +154,9 @@ const onInfoGatheringFailed = () => {
 
 // depending on the content class, different areas in the popup should be hidden/shown
 const onContentClassFound = contentClass => {
-  if (contentClass === 'srf_landingpage') {
+  if (contentClass === 'landingpage') {
     document.querySelector(".js-page-actions").style.display = '';
-  } else if (contentClass === 'srf_article') {
+  } else if (contentClass === 'article') {
     document.querySelector(".js-article-actions").style.display = '';
   }
 }
@@ -176,15 +176,13 @@ const getContentInfo = () => {
         return;
       }
 
-      const { contentId, contentClass, phase } = response;
-      if (contentId) {
+      const { urn, phase } = response;
+      if (urn) {
+        const [prefix, bestBU, contentClass, contentId] = urn.split(':');
         onContentIdFound(contentId, phase);
+        onContentClassFound(contentClass);
       } else {
         onContentIdNotFound();
-      }
-
-      if (contentClass) {
-        onContentClassFound(contentClass);
       }
     });
   });
