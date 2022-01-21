@@ -114,7 +114,7 @@ const onContentIdFound = (contentId, phase) => {
     case 'TEST':
       frontendUrl = 'https://www-test.srf.ch';
       backendUrl  = 'https://redaktor.zrh.test.srf.mpc';
-      adminUrl    = 'https://admin.cms.zrh.test.srf.mpc/';
+      adminUrl    = 'https://admin.cms.zrh.test.srf.mpc';
       break;
     case 'STAGE':
       frontendUrl = 'https://www-stage.srf.ch';
