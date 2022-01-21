@@ -24,6 +24,10 @@ a {
     color: var(--link-color);
 }
 
+ul {
+    padding-left: 24px;
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -54,6 +58,7 @@ a {
     display: flex;
     flex-direction: column;
     flex: 1 1 auto;
+    gap: 0 16px;
 }
 
 .section__content--horizontal {
