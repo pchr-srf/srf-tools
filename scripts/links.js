@@ -21,12 +21,23 @@ const getPhase = () => {
   }
 };
 
+const getPortalUrn = () => {
+  const metaNode = document.querySelector('meta[name="srf:portal:urn"]');
+
+  if (metaNode) {
+    return metaNode.getAttribute('content');
+  } else {
+    return false;
+  }
+}
+
 chrome.runtime.onMessage.addListener(
   (request, sender, callback) => {
     if (request.action == "getContentInfo")
       callback({
         urn: getUrn(),
-        phase: getPhase()
+        phase: getPhase(),
+        portalUrn: getPortalUrn(),
       });
   }
 );
