@@ -94,37 +94,38 @@ const setupDailyCheckboxListener = () => {
   });
 }
 
-const onContentIdFound = (contentId, phase) => {
+const onContentIdFound = (contentId, phase, portalUrn) => {
   document.getElementById('contentIdInput').value = contentId;
   
   // idea: loop over all links, replace various placeholders with the correct data:
   // $FE_URL    = https://www.srf.ch (depending on phase)
-  // $BE_URL    = https://redaktor.zrh.production.srf.mpc (depending on phase)
+  // $NORA_URL  = https://nora.srfdigital.ch (depending on phase)
   // $ADMIN_URL = https://admin.cms.zrh.production.srf.mpc (depending on phase)
   // $ID        = contentId
+  // $PORTAL    = portal, e.g. "news"
 
-  let frontendUrl, backendUrl, adminUrl;
+  let frontendUrl, noraUrl, adminUrl;
 
   switch (phase) {
     case 'DEV':
       frontendUrl = 'http://www.dev.srf.ch';
-      backendUrl  = 'http://redaktor.dev.srf.ch';
+      noraUrl     = 'http://localhost:6900';
       adminUrl    = 'http://admin.dev.srf.mpc';
       break;
     case 'TEST':
       frontendUrl = 'https://www-test.srf.ch';
-      backendUrl  = 'https://redaktor.zrh.test.srf.mpc';
+      noraUrl     = 'https://nora.dev.srfdigital.ch';
       adminUrl    = 'https://admin.cms.zrh.test.srf.mpc';
       break;
     case 'STAGE':
       frontendUrl = 'https://www-stage.srf.ch';
-      backendUrl  = 'https://redaktor.zrh.stage.srf.mpc';
+      noraUrl     = 'https://nora.int.srfdigital.ch';
       adminUrl    = 'https://admin.cms.zrh.stage.srf.mpc';
       break;
     case 'PROD':
     default:
       frontendUrl = 'https://www.srf.ch';
-      backendUrl  = 'https://redaktor.zrh.production.srf.mpc';
+      noraUrl     = 'https://nora.srfdigital.ch';
       adminUrl    = 'https://admin.cms.zrh.production.srf.mpc';
       break;
   }
@@ -136,8 +137,9 @@ const onContentIdFound = (contentId, phase) => {
     href = href
       .replace("$ID", contentId)
       .replace("$FE_URL", frontendUrl)
-      .replace("$BE_URL", backendUrl)
-      .replace("$ADMIN_URL", adminUrl);
+      .replace("$NORA_URL", noraUrl)
+      .replace("$ADMIN_URL", adminUrl)
+      .replace("$PORTAL", portalUrn.split(':').reverse()[0]);
     element.href = href;
   });
 };
@@ -176,10 +178,11 @@ const getContentInfo = () => {
         return;
       }
 
-      const { urn, phase } = response;
+      const { urn, phase, portalUrn } = response;
+
       if (urn) {
         const [prefix, bestBU, contentClass, contentId] = urn.split(':');
-        onContentIdFound(contentId, phase);
+        onContentIdFound(contentId, phase, portalUrn);
         onContentClassFound(contentClass);
       } else {
         onContentIdNotFound();
