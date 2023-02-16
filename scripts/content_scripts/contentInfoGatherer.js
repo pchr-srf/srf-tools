@@ -33,11 +33,12 @@ const getPortalUrn = () => {
 
 chrome.runtime.onMessage.addListener(
   (request, sender, callback) => {
-    if (request.action == "getContentInfo")
+    if (request.action == "getContentInfo") {
       callback({
         urn: getUrn(),
         phase: getPhase(),
         portalUrn: getPortalUrn(),
       });
+    }
   }
 );

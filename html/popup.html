@@ -126,6 +126,23 @@
             <!-- TODO: maybe Artikel-Feedback? :D -->
         </div>
 
+        <!-- Experiment Reordering -->
+        <div class="container__row">
+            <div class="js-reordering section">
+                <h2 class="section__title">Reordering</h2>
+
+                <div class="section__content">
+                    <div class="section__row js-no-reordering-found" style="display: none;">
+                        <p>No Reordering on this page</p>
+                    </div>
+
+                    <div class="section__row js-reordering-found" style="display: none;">
+                        <button id="debugReordering">Debug Reordering</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="container__row">
             <div class="js-team section">
                 <h2 class="section__title">Daily</h2>
@@ -147,6 +164,7 @@
         </div>
     </div>
 
-    <script src="../scripts/popup.js"></script>
+    <script src="../scripts/popup/popup.js"></script>
+    <script src="../scripts/popup/reordering.js"></script>
 </body>
 </html>

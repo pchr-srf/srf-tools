@@ -56,7 +56,6 @@ const loadTeams = () => {
 
   teamSelection.addEventListener("change", async () => {
     const selectedTeamName = teamSelection.value;
-    console.log(selectedTeamName);
 
     chrome.storage.sync.set({ selectedTeamName: selectedTeamName });
 
