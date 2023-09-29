@@ -31,6 +31,20 @@ const getPortalUrn = () => {
   }
 }
 
+const getTicker = () => {
+  const tickerNode = document.querySelector('article .article-content #ticker');
+  return !!tickerNode;
+};
+
+const getBusinessUnit = () => {
+  const host = window.location.host;
+  if (host.endsWith('rtr.ch')) {
+    return 'rtr';
+  } else if (host.endsWith('srf.ch')) {
+    return 'srf';
+  }
+};
+
 chrome.runtime.onMessage.addListener(
   (request, sender, callback) => {
     if (request.action == "getContentInfo") {
@@ -38,6 +52,8 @@ chrome.runtime.onMessage.addListener(
         urn: getUrn(),
         phase: getPhase(),
         portalUrn: getPortalUrn(),
+        hasTicker: getTicker(),
+        businessUnit: getBusinessUnit(),
       });
     }
   }

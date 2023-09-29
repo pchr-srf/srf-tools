@@ -93,7 +93,7 @@ const setupDailyCheckboxListener = () => {
   });
 }
 
-const onContentIdFound = (contentId, phase, portalUrn) => {
+const onContentIdFound = (contentId, phase, portalUrn, businessUnit) => {
   document.getElementById('contentIdInput').value = contentId;
   
   // idea: loop over all links, replace various placeholders with the correct data:
@@ -102,6 +102,7 @@ const onContentIdFound = (contentId, phase, portalUrn) => {
   // $ADMIN_URL = https://admin.cms.zrh.production.srf.mpc (depending on phase)
   // $ID        = contentId
   // $PORTAL    = portal, e.g. "news"
+  // $BU        = business unit, i.e. "rtr" or "srf"
 
   let frontendUrl, noraUrl, adminUrl;
 
@@ -138,7 +139,8 @@ const onContentIdFound = (contentId, phase, portalUrn) => {
       .replace("$FE_URL", frontendUrl)
       .replace("$NORA_URL", noraUrl)
       .replace("$ADMIN_URL", adminUrl)
-      .replace("$PORTAL", portalUrn.split(':').reverse()[0]);
+      .replace("$PORTAL", portalUrn.split(':').reverse()[0])
+      .replace("$BU", businessUnit);
     element.href = href;
   });
 };
@@ -162,6 +164,10 @@ const onContentClassFound = contentClass => {
   }
 }
 
+const onTickerFound = () => {
+  document.querySelector(".js-ticker-link").style.display = '';
+}
+
 // get some info about the website via content script (content id and content class)
 const getContentInfo = () => {
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
@@ -177,12 +183,17 @@ const getContentInfo = () => {
         return;
       }
 
-      const { urn, phase, portalUrn } = response;
+      const { urn, phase, portalUrn, hasTicker, businessUnit } = response;
 
       if (urn) {
-        const [prefix, bestBU, contentClass, contentId] = urn.split(':');
-        onContentIdFound(contentId, phase, portalUrn);
+        const [,, contentClass, contentId] = urn.split(':');
+        onContentIdFound(contentId, phase, portalUrn, businessUnit);
         onContentClassFound(contentClass);
+
+        if (hasTicker) {
+          onTickerFound();
+        }
+
       } else {
         onContentIdNotFound();
       }
