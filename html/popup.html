@@ -35,7 +35,9 @@
                 <div class="section__content">
                     <ul class="links">
                         <li><a class="link--replace-url" target="_blank" data-href="$NORA_URL/ui/$PORTAL/articles/$ID" href="">Open in Edith</a></li>
-                        <li><a class="link--replace-url js-ticker-link" style="display: none;" target="_blank" data-href="$NORA_URL/ui/$PORTAL/ticker/urn:$BU:article:$ID" href="">Open Ticker in Woody</a></li>
+                        <li class="js-ticker-link" style="display: none;">
+                            <a class="link--replace-url" target="_blank" data-href="$NORA_URL/ui/$PORTAL/ticker/urn:$BU:article:$ID" href="">Open Ticker in Woody</a>
+                        </li>
                         <li><a class="link--replace-url" target="_blank" data-href="$FE_URL/article/$ID" href="">Access via ID</a></li>
                         <li><a class="link--replace-url" target="_blank" data-href="$FE_URL/article/$ID/webview" href="">Webview</a></li>
                         <li><a class="link--replace-url" target="_blank" data-href="$FE_URL/article/$ID/json" href="">JSON</a></li>
