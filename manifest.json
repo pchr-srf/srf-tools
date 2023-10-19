@@ -30,6 +30,7 @@
     }
   ],
   "options_page": "html/options.html",
+	"devtools_page": "html/devtools.html",
   "permissions": [
     "tabs",
     "storage"
